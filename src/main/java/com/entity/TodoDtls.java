@@ -1,5 +1,5 @@
 package com.entity;
-public class Entity{
+public class TodoDtls{
 	
 	private int id;
 	private String name;

@@ -20,21 +20,21 @@
 							<div class="form-group">
 								<label for="exampleInputEmail1">Name</label> <input
 									type="text" class="form-control" id="exampleInputEmail1"
-									aria-describedby="emailHelp"> 
+									aria-describedby="emailHelp" name = "username"> 
 							</div>
 						
 							<div class="form-group">
 								<label for="exampleInputEmail1">TODO</label> <input
 									type="text" class="form-control" id="exampleInputEmail1"
-									aria-describedby="emailHelp"> 
+									aria-describedby="emailHelp" name = "todo"> 
 							</div>
 							
 							<div class="form-group">
 								<label for="inputState">Status</label> <select id = "inputState"
-									class="form-control">
+									class="form-control" name="status">
 									<option selected>--Select--</option>
-									<option>Pending</option>
-									<option>Complete</option>
+									<option value="Pending">Pending</option>
+									<option value="Complete">Complete</option>
 									</select>
 							
 							</div>

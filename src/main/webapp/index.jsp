@@ -1,3 +1,6 @@
+<%@page import="java.util.List"%>
+<%@page import="com.entity.TodoDtls"%>
+<%@page import="com.DAO.TodoDAO"%>
 <%@page import="com.DB.DBConnect"%>
 <%@page import="java.sql.Connection" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -15,6 +18,26 @@
 	
 
 	<h1 class="text-center text-success">TODO-APP</h1>
+	
+	<%
+	String sucMsg = (String) session.getAttribute("sucMsg");
+	if(sucMsg != null){
+	%>
+	<div class="alert alert-success" role="alert"><%=sucMsg%></div>	
+	<%
+	session.removeAttribute("sucMsg");
+	}
+	%>
+	
+	<%
+	String failedMsg = (String) session.getAttribute("failedMsg");
+	if(failedMsg != null){
+	%>
+	<div class="alert alert-danger" role="alert"><%=failedMsg%></div>	
+	<%
+	session.removeAttribute("failedMsg");
+	}
+	%>
 
 	<div class="container">
 		<table class="table table-striped" border="1px">
@@ -28,15 +51,29 @@
 				</tr>
 			</thead>
 			<tbody>
+			
+				<%
+					TodoDAO dao = new TodoDAO(DBConnect.getConn());
+					List<TodoDtls> todo = dao.getTodo();
+					for (TodoDtls t : todo){
+						
+					
+				%>
+				
 				<tr>
-					<th scope="row">1</th>
-					<th scope="col">John</th>
-					<td>Java tutorial</td>
-					<td>Pending</td>
-					<td><a href="" class="btn btn-sm btn-success">Edit</a> <a
-						href="" class="btn btn-sm btn-danger">Delete</a>
+					<th scope="row"><%=t.getId()%></th>
+					<th scope="col"><%=t.getName()%></th>
+					<td><%=t.getTodo() %></td>
+					<td><%=t.getStatus() %></td>
+				
+					<td><a href="edit.jsp?id=<%=t.getId() %>" 
+						class="btn btn-sm btn-success">Edit</a> 
+						<a href="delete?id=<%=t.getId() %>"
+						class="btn btn-sm btn-danger">Delete</a></td>
 				</tr>
-
+				<%
+					}
+				%>
 
 
 			</tbody>
